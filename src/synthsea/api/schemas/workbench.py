@@ -35,6 +35,25 @@ class FineTuningJobRequest(StrictModel):
     unified_memory_mb: int = Field(default=0, ge=0)
 
 
+class GenerationRunRequest(StrictModel):
+    topic: str = Field(min_length=3)
+    language_profile_id: Literal["singlish", "malay", "tamil", "singapore_mandarin"]
+    prompt_count: int = Field(default=8, ge=1, le=100)
+    seed: int = 13
+    model_version: str = "gpt-oss:20b"
+
+
+class GenerationRunResponse(StrictModel):
+    run_id: str
+    model_version: str
+    topic: str
+    language_profile_id: str
+    record_count: int
+    failures: list[str] = Field(default_factory=list)
+    stages: list[str]
+    artifact_ref: str
+
+
 class FineTuningJobResponse(StrictModel):
     job_id: str
     status: Literal["draft", "queued", "running", "succeeded", "failed", "cancelled", "blocked"]

@@ -1,3 +1,27 @@
+# Research Workbench
+
+## Local Data Generation
+
+The Data Generation view is the entry point for the SynthSEA research pipeline.
+It uses the local Ollama `gpt-oss:20b` model to create candidate instruction
+data and records the full agent methodology: resource discovery, topic context,
+language profile, instruction generation, language-specialist review,
+code-switch control, cultural and semantic validation, diversity checks,
+critic, judge, and refinement.
+
+Before starting the workbench on the Mac, ensure the local model is available:
+
+```bash
+ollama pull gpt-oss:20b
+ollama serve
+```
+
+Each run is saved under `reports/workspace/generation/`. Its candidate records
+must be reviewed and filtered before governed dataset intake. The subsequent
+fine-tuning, baseline and ablation experiments, per-language evaluation, and
+evidence checks supply the inputs for the research dossier and paper package;
+generated candidate text itself is never a research claim.
+
 # SynthSEA Research Workbench
 
 The local workbench is a React client backed by FastAPI. It exposes governed

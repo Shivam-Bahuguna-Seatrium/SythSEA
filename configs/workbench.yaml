@@ -12,3 +12,6 @@ training:
   default_base_model: "mlx-community/Qwen3-8B-4bit"
 chat:
   ollama_host: "http://127.0.0.1:11434"
+generation:
+  local_model: "gpt-oss:20b"
+  methodology_condition: "tier_b_multi_agent"

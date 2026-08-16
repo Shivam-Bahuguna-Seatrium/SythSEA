@@ -1,5 +1,7 @@
 stage_graph_version: "0.1.0"
-mode: cpu_fixture
+mode: local_ollama_research
+local_model: "gpt-oss:20b"
+methodology_condition: "tier_b_multi_agent"
 batch_size: 8
 random_seeds: [13]
 code_switch_policy:

@@ -1,4 +1,4 @@
-import { BarChart3, Bot, Database, FlaskConical, Menu, ShieldCheck } from "lucide-react";
+import { BarChart3, Bot, Database, FlaskConical, Menu, Sparkles, ShieldCheck } from "lucide-react";
 import { NavLink } from "react-router-dom";
 import type { PropsWithChildren } from "react";
 
@@ -7,6 +7,7 @@ import { StatusBadge } from "./StatusBadge";
 const links = [
   ["/", "Overview", BarChart3],
   ["/intake", "Data Intake", Database],
+  ["/generation", "Data Generation", Sparkles],
   ["/training", "Fine-Tuning", FlaskConical],
   ["/chat", "Local Chat", Bot],
   ["/evidence", "Evidence", ShieldCheck],

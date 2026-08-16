@@ -4,7 +4,7 @@ from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 
 from synthsea.api.errors import add_error_handlers
-from synthsea.api.routes import chat, evidence, intakes, training
+from synthsea.api.routes import chat, evidence, generation, intakes, training
 
 app = FastAPI(title="SynthSEA Research Workbench", version="0.1.0")
 app.add_middleware(
@@ -16,6 +16,7 @@ app.add_middleware(
 )
 add_error_handlers(app)
 app.include_router(intakes.router)
+app.include_router(generation.router)
 app.include_router(training.router)
 app.include_router(chat.router)
 app.include_router(evidence.router)
