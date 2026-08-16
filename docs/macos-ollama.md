@@ -1,3 +1,16 @@
+# Apple Silicon Models
+
+The Fine-Tuning workspace defaults to `mlx-community/Qwen3-8B-4bit`. On an
+Apple Silicon Mac with `mlx-lm` installed, MLX-LM downloads this model into its
+local cache when the first training job starts; no separate manual download is
+needed. Plan sufficient free disk space and unified memory before queuing an
+8B run.
+
+When a job succeeds, open Local Chat and select the **Fine-tuned models** tab.
+The workbench invokes `mlx_lm.generate` with the recorded base model and adapter
+path. This model stays local and every chat response remains exploratory until
+it is explicitly reviewed and promoted.
+
 # Apple Silicon MLX-LM and Ollama Pilot
 
 This guide runs SynthSEA locally on an Apple Silicon MacBook. MLX-LM is the

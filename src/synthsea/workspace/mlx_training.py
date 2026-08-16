@@ -5,6 +5,7 @@ from __future__ import annotations
 import platform
 import shutil
 import subprocess
+from pathlib import Path
 
 from synthsea.workspace.jobs import WorkspaceJobStore
 from synthsea.workspace.models import TrainingJobStatus, WorkspaceJob
@@ -27,6 +28,8 @@ class MlxTrainingRunner:
         executable = shutil.which("mlx_lm.lora")
         if executable is None:
             return self._block(job, "Install mlx-lm before starting this fine-tuning job")
+        adapter_path = self._adapter_path(job)
+        adapter_path.parent.mkdir(parents=True, exist_ok=True)
         running = job.transition(TrainingJobStatus.RUNNING)
         self.store.save(running)
         log_path = self.store.jobs_root / f"{job.job_id}.log"
@@ -54,7 +57,7 @@ class MlxTrainingRunner:
             update={
                 "artifact_refs": [
                     f"log:{log_path}",
-                    f"checkpoint:reports/workspace/jobs/{job.job_id}-checkpoint",
+                    f"adapter:{adapter_path}",
                 ]
             }
         )
@@ -65,3 +68,6 @@ class MlxTrainingRunner:
         blocked = job.transition(TrainingJobStatus.BLOCKED, reason)
         self.store.save(blocked)
         return blocked
+
+    def _adapter_path(self, job: WorkspaceJob) -> Path:
+        return self.store.jobs_root / job.job_id / "adapter"

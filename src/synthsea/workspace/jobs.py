@@ -30,9 +30,10 @@ class WorkspaceJobStore:
         else:
             status = TrainingJobStatus.QUEUED
             reason = ""
-        command = _mlx_command(request)
+        job_id = f"mlx-{uuid4().hex[:12]}"
+        command = _mlx_command(request, self.jobs_root / job_id / "adapter")
         job = WorkspaceJob(
-            job_id=f"mlx-{uuid4().hex[:12]}",
+            job_id=job_id,
             status=status,
             dataset_version=request.dataset_version,
             split_version=request.split_version,
@@ -84,8 +85,8 @@ def job_response(job: WorkspaceJob) -> FineTuningJobResponse:
     )
 
 
-def _mlx_command(request: FineTuningJobRequest) -> str:
+def _mlx_command(request: FineTuningJobRequest, adapter_path: Path) -> str:
     return (
-        f"mlx_lm.lora --model {request.base_model} --data {request.dataset_version} "
-        f"--seed {request.seed}"
+        f"mlx_lm.lora --model {request.base_model} --train --data {request.dataset_version} "
+        f"--seed {request.seed} --adapter-path {adapter_path}"
     )

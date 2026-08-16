@@ -81,6 +81,7 @@ class LocalModelResponse(StrictModel):
     model_version: str
     available: bool
     local_only: Literal[True] = True
+    engine: Literal["ollama", "mlx_lm"] = "ollama"
     unavailable_reason: str = ""
 
 

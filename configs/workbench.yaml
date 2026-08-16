@@ -9,5 +9,6 @@ training:
   engine: "mlx_lm"
   execution_location: "apple_silicon_local"
   mlx_lm_command: "mlx_lm.lora"
+  default_base_model: "mlx-community/Qwen3-8B-4bit"
 chat:
   ollama_host: "http://127.0.0.1:11434"
