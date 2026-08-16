@@ -63,6 +63,17 @@ class WorkspaceJobStore:
             raise ValueError(f"training job not found: {job_id}")
         return WorkspaceJob.model_validate(json.loads(path.read_text()))
 
+    def list(self) -> list[WorkspaceJob]:
+        if not self.jobs_root.is_dir():
+            return []
+        jobs: list[WorkspaceJob] = []
+        for path in self.jobs_root.glob("*.json"):
+            try:
+                jobs.append(WorkspaceJob.model_validate(json.loads(path.read_text())))
+            except (json.JSONDecodeError, ValueError):
+                continue
+        return sorted(jobs, key=lambda job: job.created_at, reverse=True)
+
     def cancel(self, job_id: str) -> WorkspaceJob:
         job = self.get(job_id)
         cancelled = job.transition(TrainingJobStatus.CANCELLED, "cancelled by researcher")

@@ -22,11 +22,25 @@ def create_training_job(
     return job_response(job)
 
 
+@router.get("/jobs", response_model=list[FineTuningJobResponse])
+def list_training_jobs(
+    store: WorkspaceJobStore = Depends(job_store),  # noqa: B008
+) -> list[FineTuningJobResponse]:
+    """List locally persisted fine-tuning job history, newest first."""
+
+    return [job_response(job) for job in store.list()]
+
+
 @router.get("/jobs/{job_id}", response_model=FineTuningJobResponse)
 def get_training_job(
-    job_id: str, store: WorkspaceJobStore = Depends(job_store)  # noqa: B008
+    job_id: str,
+    background_tasks: BackgroundTasks,
+    store: WorkspaceJobStore = Depends(job_store),  # noqa: B008
 ) -> FineTuningJobResponse:
-    return job_response(store.get(job_id))
+    job = store.get(job_id)
+    if job.status.value == "queued":
+        background_tasks.add_task(MlxTrainingRunner(store).run, job.job_id)
+    return job_response(job)
 
 
 @router.delete("/jobs/{job_id}", response_model=FineTuningJobResponse, status_code=202)
