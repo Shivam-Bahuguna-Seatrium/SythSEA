@@ -1,0 +1,9 @@
+datasets:
+  - dataset_id: public-fixture
+    dataset_version: v1
+    access_class: public
+    status: eligible
+  - dataset_id: restricted-fixture
+    dataset_version: v1
+    access_class: restricted
+    status: restricted

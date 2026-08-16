@@ -1,0 +1,1 @@
+"""FastAPI boundary for the local SynthSEA research workbench."""

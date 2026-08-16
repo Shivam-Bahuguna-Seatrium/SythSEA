@@ -1,0 +1,27 @@
+{
+  "created_at": "2026-08-13T09:11:15.999664Z",
+  "dossier_id": "synthsea-regicon-2026",
+  "novelty_summary": "Novelty remains a research hypothesis until verified literature comparison and the declared experiments are complete.",
+  "research_question_ids": [
+    "rq-001",
+    "rq-002",
+    "rq-003"
+  ],
+  "source_refs": [
+    "web-self-instruct-2023",
+    "web-sea-code-mix-2023",
+    "web-seallms-2024",
+    "web-singlish-ud-2017",
+    "web-nonstandard-english-2020",
+    "web-multi-value-2023",
+    "web-regicon-2026-search"
+  ],
+  "status": "blocked",
+  "target_venue": "RegiCON 2026",
+  "title": "SynthSEA research-to-publication dossier",
+  "unresolved_items": [
+    "official_venue_source_not_verified",
+    "unverified_literature_source"
+  ],
+  "version": "v1"
+}

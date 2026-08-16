@@ -1,0 +1,24 @@
+{
+  "blocking_issues": [
+    "citations_not_verified",
+    "claim:claim-ablation:unsupported",
+    "claim:claim-language-slices:unsupported",
+    "claim:claim-primary-quality:unsupported",
+    "dossier_not_approved",
+    "ethics_review_not_recorded",
+    "evidence_missing",
+    "reproducibility_incomplete",
+    "venue_not_approved"
+  ],
+  "citation_status": "blocked",
+  "ethics_status": "blocked",
+  "evidence_coverage": {},
+  "generated_at": "2026-08-13T09:13:14.595839Z",
+  "package_id": "synthsea-regicon-2026",
+  "release_status": "blocked",
+  "reproducibility_status": "blocked",
+  "venue_status": "draft",
+  "warnings": [
+    "no_evidence"
+  ]
+}

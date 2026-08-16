@@ -1,0 +1,17 @@
+venue_id: regicon-2026
+venue_name: RegiCON 2026
+requirements_source: fixture://conference-cfp
+accessed_at: "2026-08-13"
+format_family: manual_review
+template_reference: fixture://template
+page_limit: 10
+author_mode: anonymous
+required_sections:
+  - abstract
+  - introduction
+  - methodology
+  - results
+  - references
+reference_style: springer
+anonymization_rule: follow official author guide
+version: v1

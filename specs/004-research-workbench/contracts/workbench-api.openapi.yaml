@@ -1,0 +1,254 @@
+openapi: 3.1.0
+info:
+  title: SynthSEA Research Workbench API
+  version: 0.1.0
+  description: Local-first API for governed intake, MLX-LM fine-tuning jobs, local Ollama chat, lineage, and readiness.
+paths:
+  /api/datasets/intakes:
+    post:
+      summary: Validate and create a dataset intake
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/DatasetIntakeRequest'
+      responses:
+        '201':
+          description: Intake created with an eligible, blocked, or restricted validation state
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DatasetIntake'
+        '422':
+          description: Invalid request data
+  /api/training/jobs:
+    post:
+      summary: Create an MLX-LM fine-tuning job
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/FineTuningJobRequest'
+      responses:
+        '202':
+          description: Job accepted or blocked with status detail
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/FineTuningJob'
+  /api/training/jobs/{jobId}:
+    get:
+      summary: Retrieve current MLX-LM fine-tuning job status and artifacts
+      parameters:
+        - $ref: '#/components/parameters/JobId'
+      responses:
+        '200':
+          description: MLX-LM fine-tuning job status
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/FineTuningJob'
+    delete:
+      summary: Request cancellation for a queued or running job
+      parameters:
+        - $ref: '#/components/parameters/JobId'
+      responses:
+        '202':
+          description: Cancellation recorded
+  /api/chat/models:
+    get:
+      summary: List available local inference models and local-service state
+      responses:
+        '200':
+          description: Local model availability
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/LocalModel'
+  /api/chat/conversations:
+    post:
+      summary: Create an exploratory local chat conversation
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ChatConversationRequest'
+      responses:
+        '201':
+          description: Conversation created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ChatConversation'
+  /api/chat/conversations/{conversationId}/messages:
+    post:
+      summary: Send an exploratory message to the selected local model
+      parameters:
+        - $ref: '#/components/parameters/ConversationId'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ChatMessageRequest'
+      responses:
+        '201':
+          description: Assistant response recorded with local model metadata
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ChatMessage'
+        '503':
+          description: Local model service or selected model unavailable
+  /api/artifacts/{artifactId}/lineage:
+    get:
+      summary: Retrieve the artifact provenance graph
+      parameters:
+        - $ref: '#/components/parameters/ArtifactId'
+      responses:
+        '200':
+          description: Artifact lineage
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/WorkspaceArtifactView'
+  /api/readiness:
+    get:
+      summary: Retrieve current research and report readiness blockers
+      responses:
+        '200':
+          description: Readiness items and release state
+          content:
+            application/json:
+              schema:
+                type: object
+                required: [releaseStatus, items]
+                properties:
+                  releaseStatus:
+                    type: string
+                    enum: [ready, blocked]
+                  items:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/ReadinessItem'
+components:
+  parameters:
+    JobId:
+      name: jobId
+      in: path
+      required: true
+      schema: { type: string }
+    ConversationId:
+      name: conversationId
+      in: path
+      required: true
+      schema: { type: string }
+    ArtifactId:
+      name: artifactId
+      in: path
+      required: true
+      schema: { type: string }
+  schemas:
+    DatasetIntakeRequest:
+      type: object
+      required: [dataset, recordSource]
+      properties:
+        dataset: { type: object, additionalProperties: true }
+        recordSource: { type: string }
+    DatasetIntake:
+      type: object
+      required: [intakeId, validationStatus, issues]
+      properties:
+        intakeId: { type: string }
+        validationStatus: { type: string, enum: [draft, eligible, blocked, restricted, failed] }
+        issues: { type: array, items: { type: string } }
+    FineTuningJobRequest:
+      type: object
+      required: [trainingEngine, datasetVersion, splitVersion, languageSlices, baseModel, modelVersion, modelLicense, seed, objective]
+      properties:
+        trainingEngine: { type: string, const: mlx_lm }
+        datasetVersion: { type: string }
+        splitVersion: { type: string }
+        languageSlices: { type: array, items: { type: string }, minItems: 1 }
+        baseModel: { type: string }
+        modelVersion: { type: string }
+        modelLicense: { type: string }
+        adapterConfig: { type: object, additionalProperties: true }
+        seed: { type: integer }
+        objective: { type: string }
+    FineTuningJob:
+      type: object
+      required: [jobId, status, trainingEngine, datasetVersion, modelVersion, languageSlices]
+      properties:
+        jobId: { type: string }
+        status: { type: string, enum: [draft, queued, running, succeeded, failed, cancelled, blocked] }
+        trainingEngine: { type: string, const: mlx_lm }
+        datasetVersion: { type: string }
+        modelVersion: { type: string }
+        mlxLmVersion: { type: string }
+        trainingCommand: { type: string }
+        unifiedMemoryMb: { type: integer, minimum: 0 }
+        languageSlices: { type: array, items: { type: string } }
+        failureReason: { type: string }
+        artifactRefs: { type: array, items: { type: string } }
+    LocalModel:
+      type: object
+      required: [modelVersion, available, localOnly]
+      properties:
+        modelVersion: { type: string }
+        available: { type: boolean }
+        localOnly: { type: boolean }
+        unavailableReason: { type: string }
+    ChatConversationRequest:
+      type: object
+      required: [modelVersion, accessClass]
+      properties:
+        modelVersion: { type: string }
+        accessClass: { type: string, enum: [public, restricted, private] }
+        temperature: { type: number }
+        seed: { type: integer }
+    ChatConversation:
+      type: object
+      required: [conversationId, modelVersion, status, exploratory]
+      properties:
+        conversationId: { type: string }
+        modelVersion: { type: string }
+        status: { type: string, enum: [active, unavailable, blocked, archived] }
+        exploratory: { type: boolean, const: true }
+    ChatMessageRequest:
+      type: object
+      required: [content]
+      properties:
+        content: { type: string, minLength: 1 }
+    ChatMessage:
+      type: object
+      required: [messageId, role, content, modelVersion, exploratory]
+      properties:
+        messageId: { type: string }
+        role: { type: string, enum: [user, assistant] }
+        content: { type: string }
+        modelVersion: { type: string }
+        exploratory: { type: boolean, const: true }
+    WorkspaceArtifactView:
+      type: object
+      required: [artifactId, accessClass, validationStatus, sourceRefs, dependentRefs]
+      properties:
+        artifactId: { type: string }
+        accessClass: { type: string, enum: [public, restricted, private] }
+        validationStatus: { type: string }
+        sourceRefs: { type: array, items: { type: string } }
+        dependentRefs: { type: array, items: { type: string } }
+    ReadinessItem:
+      type: object
+      required: [itemId, category, severity, status, message]
+      properties:
+        itemId: { type: string }
+        category: { type: string }
+        severity: { type: string, enum: [blocking, warning, info] }
+        status: { type: string }
+        message: { type: string }

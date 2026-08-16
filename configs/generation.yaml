@@ -1,0 +1,7 @@
+stage_graph_version: "0.1.0"
+mode: cpu_fixture
+batch_size: 8
+random_seeds: [13]
+code_switch_policy:
+  enabled: false
+  condition: monolingual_control

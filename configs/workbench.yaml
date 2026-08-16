@@ -1,0 +1,13 @@
+api:
+  host: "127.0.0.1"
+  port: 8000
+  frontend_origin: "http://127.0.0.1:5173"
+storage:
+  catalog_path: "experiments/catalog.duckdb"
+  workspace_root: "reports/workspace"
+training:
+  engine: "mlx_lm"
+  execution_location: "apple_silicon_local"
+  mlx_lm_command: "mlx_lm.lora"
+chat:
+  ollama_host: "http://127.0.0.1:11434"

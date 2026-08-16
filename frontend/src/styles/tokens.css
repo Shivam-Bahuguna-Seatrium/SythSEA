@@ -1,0 +1,19 @@
+:root {
+  --canvas: #f5f4ed;
+  --surface: #ffffff;
+  --ink: #18221d;
+  --muted: #66736a;
+  --line: #d8ddd4;
+  --moss: #1e6a46;
+  --moss-soft: #dceee4;
+  --amber: #aa6b00;
+  --amber-soft: #fff0cf;
+  --vermilion: #b9442b;
+  --vermilion-soft: #fae2dc;
+  --sidebar: #17241f;
+  --sidebar-ink: #e7efe9;
+  --radius: 8px;
+  font-family: Georgia, "Iowan Old Style", serif;
+  color: var(--ink);
+  background: var(--canvas);
+}

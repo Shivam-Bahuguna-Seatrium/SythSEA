@@ -1,0 +1,3 @@
+metrics: [quality_pass_rate, duplicate_rate]
+human_review: false
+data_efficiency_sizes: [1000, 5000, 10000, 25000, 50000]

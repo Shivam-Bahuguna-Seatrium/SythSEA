@@ -1,0 +1,11 @@
+profiles:
+  - profile_id: singapore_english_singlish
+    display_name: Singapore English / Singlish
+    language_or_variety: Singapore English and Singlish
+    region: Singapore
+    script_or_orthography: Latin
+    inclusion_rules: [Singapore-context usage]
+    cultural_context: Singapore
+    code_switching_notes: English mixing is explicitly labeled
+    resource_limitations: documented in review
+    validation_status: pending_review

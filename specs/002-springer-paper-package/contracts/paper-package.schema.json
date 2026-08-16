@@ -1,0 +1,27 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://synthsea.org/schemas/paper-package.schema.json",
+  "title": "SynthSEA Paper Package",
+  "type": "object",
+  "required": ["package_id", "package_version", "venue_profile_id", "evidence_manifest_id", "manuscript_source", "bibliography_source", "sections", "tables", "figures", "appendix", "compliance_result", "build_result", "included_artifacts", "excluded_artifacts", "access_class", "manifest_checksum", "created_at"],
+  "properties": {
+    "package_id": {"type": "string"},
+    "package_version": {"type": "string"},
+    "venue_profile_id": {"type": "string"},
+    "evidence_manifest_id": {"type": "string"},
+    "manuscript_source": {"type": "string"},
+    "bibliography_source": {"type": "string"},
+    "sections": {"type": "array", "items": {"type": "string"}},
+    "tables": {"type": "array", "items": {"type": "string"}},
+    "figures": {"type": "array", "items": {"type": "string"}},
+    "appendix": {"type": "string"},
+    "compliance_result": {"type": "string"},
+    "build_result": {"type": "string"},
+    "included_artifacts": {"type": "array", "items": {"type": "string"}},
+    "excluded_artifacts": {"type": "array", "items": {"type": "string"}},
+    "access_class": {"enum": ["public", "restricted", "private"]},
+    "manifest_checksum": {"type": "string"},
+    "created_at": {"type": "string", "format": "date-time"}
+  },
+  "additionalProperties": false
+}

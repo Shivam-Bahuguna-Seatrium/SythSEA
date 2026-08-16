@@ -1,0 +1,181 @@
+{
+  "research_run": {
+    "run_id": "web-research-2026-08-13",
+    "retrieved_at": "2026-08-13",
+    "discovery_service": "OpenAlex works API",
+    "queries": [
+      "Self-Instruct Aligning Language Models with Self-Generated Instructions",
+      "multilingual synthetic instruction data low-resource languages",
+      "Southeast Asian languages large language models",
+      "Singapore English NLP Singlish",
+      "multilingual prompting code-mixed Southeast Asian languages"
+    ],
+    "policy": "Discovery records are candidates until researcher approval; no novelty claim is final from search metadata alone."
+  },
+  "sources": [
+    {
+      "source_id": "web-self-instruct-2023",
+      "source_type": "academic",
+      "title": "Self-Instruct: Aligning Language Models with Self-Generated Instructions",
+      "authors": [
+        "Yizhong Wang",
+        "Yeganeh Kordi",
+        "Swaroop Mishra",
+        "Alisa Liu",
+        "Noah A. Smith",
+        "Daniel Khashabi",
+        "Hannaneh Hajishirzi"
+      ],
+      "year": 2023,
+      "venue": "Proceedings of the 61st Annual Meeting of the Association for Computational Linguistics",
+      "doi_or_url": "https://doi.org/10.18653/v1/2023.acl-long.754",
+      "retrieved_at": "2026-08-13",
+      "contribution": "Introduces a self-training pipeline that generates instruction, input, and output samples, filters invalid or similar samples, and uses the resulting data for instruction tuning.",
+      "limitation": "The indexed record does not establish coverage of Singapore English/Singlish, Malay, Tamil, Singapore-context Mandarin, or community-led cultural review.",
+      "relevance": "Primary baseline for synthetic instruction generation and filtering.",
+      "verification_status": "candidate",
+      "access_class": "public",
+      "license_or_terms": "ACL Anthology and DOI landing page available; verify publication license before redistribution."
+    },
+    {
+      "source_id": "web-sea-code-mix-2023",
+      "source_type": "academic",
+      "title": "Prompting Multilingual Large Language Models to Generate Code-Mixed Texts: The Case of South East Asian Languages",
+      "authors": [
+        "Zheng-Xin Yong",
+        "Ruochen Zhang",
+        "Jessica Zosa Forde",
+        "Skyler Wang",
+        "Holy Lovenia",
+        "Samuel Cahyawijaya",
+        "Alham Fikri Aji"
+      ],
+      "year": 2023,
+      "venue": "arXiv",
+      "doi_or_url": "https://doi.org/10.48550/arxiv.2303.13592",
+      "retrieved_at": "2026-08-13",
+      "contribution": "Studies prompting multilingual models to generate code-mixed text in seven Southeast Asian languages, including Malay, Chinese, Tamil, and Singlish, and reports inconsistent quality across language pairings.",
+      "limitation": "The indexed record describes prompting behavior and recommends extensive human checks; it does not establish SynthSEA's multi-agent verification or instruction-data downstream results.",
+      "relevance": "Directly relevant prior art for code-switching, SEA language coverage, and the need for human validation.",
+      "verification_status": "candidate",
+      "access_class": "public",
+      "license_or_terms": "Open-access preprint; verify reuse terms for text and figures."
+    },
+    {
+      "source_id": "web-seallms-2024",
+      "source_type": "academic",
+      "title": "SeaLLMs - Large Language Models for Southeast Asia",
+      "authors": [
+        "Xuan-Phi Nguyen",
+        "Wenxuan Zhang",
+        "Xin Li",
+        "Mahani Aljunied",
+        "Zhiqiang Hu",
+        "Chenhui Shen",
+        "Yew Ken Chia",
+        "Xingxuan Li",
+        "Jianyu Wang",
+        "Qingyu Tan",
+        "Liying Cheng",
+        "Guanzheng Chen",
+        "Yue Deng",
+        "Sen Yang",
+        "Chaoqun Liu",
+        "Hang Zhang",
+        "Lidong Bing"
+      ],
+      "year": 2024,
+      "venue": "Proceedings of the 62nd Annual Meeting of the Association for Computational Linguistics, System Demonstrations",
+      "doi_or_url": "https://doi.org/10.18653/v1/2024.acl-demos.28",
+      "retrieved_at": "2026-08-13",
+      "contribution": "Presents a large-language-model effort focused on Southeast Asian languages and provides regional multilingual model prior art.",
+      "limitation": "This is model and system prior art, not evidence that multi-agent synthetic instruction generation improves culturally reviewed data quality.",
+      "relevance": "Important regional baseline and comparison point for SEA multilingual model coverage.",
+      "verification_status": "candidate",
+      "access_class": "public",
+      "license_or_terms": "ACL Anthology record; verify model and data licenses separately."
+    },
+    {
+      "source_id": "web-singlish-ud-2017",
+      "source_type": "academic",
+      "title": "Universal Dependencies Parsing for Colloquial Singaporean English",
+      "authors": [
+        "Hongmin Wang",
+        "Yue Zhang",
+        "GuangYong Leonard Chan",
+        "Jie Yang",
+        "Hai Leong Chieu"
+      ],
+      "year": 2017,
+      "venue": "Proceedings of the 55th Annual Meeting of the Association for Computational Linguistics",
+      "doi_or_url": "https://doi.org/10.18653/v1/p17-1159",
+      "retrieved_at": "2026-08-13",
+      "contribution": "Provides a Universal Dependencies treebank and parser work for colloquial Singaporean English.",
+      "limitation": "The task is syntactic parsing rather than synthetic instruction generation or cultural quality evaluation.",
+      "relevance": "Supports Singlish terminology, regional-language resource design, and evaluation-resource planning.",
+      "verification_status": "candidate",
+      "access_class": "public",
+      "license_or_terms": "ACL Anthology record; verify treebank license before use."
+    },
+    {
+      "source_id": "web-nonstandard-english-2020",
+      "source_type": "academic",
+      "title": "Mind Your Inflections! Improving NLP for Non-Standard Englishes with Base-Inflection Encoding",
+      "authors": [
+        "Samson Tan",
+        "Shafiq Joty",
+        "Lav R. Varshney",
+        "Min-Yen Kan"
+      ],
+      "year": 2020,
+      "venue": "Proceedings of the 2020 Conference on Empirical Methods in Natural Language Processing",
+      "doi_or_url": "https://doi.org/10.18653/v1/2020.emnlp-main.455",
+      "retrieved_at": "2026-08-13",
+      "contribution": "Studies NLP robustness for non-standard Englishes including Colloquial Singapore English and proposes base-inflection encoding.",
+      "limitation": "The method addresses representation and downstream robustness, not multilingual synthetic instruction generation or cultural review.",
+      "relevance": "Motivates separate evaluation of Singlish and other regional varieties rather than assuming Standard English transfer.",
+      "verification_status": "candidate",
+      "access_class": "public",
+      "license_or_terms": "ACL Anthology record; verify data and code terms before redistribution."
+    },
+    {
+      "source_id": "web-multi-value-2023",
+      "source_type": "academic",
+      "title": "Multi-VALUE: A Framework for Cross-Dialectal English NLP",
+      "authors": [
+        "Caleb Ziems",
+        "William A. Held",
+        "Jingfeng Yang",
+        "Jwala Dhamala",
+        "Rahul Gupta",
+        "Diyi Yang"
+      ],
+      "year": 2023,
+      "venue": "Proceedings of the 61st Annual Meeting of the Association for Computational Linguistics",
+      "doi_or_url": "https://doi.org/10.18653/v1/2023.acl-long.44",
+      "retrieved_at": "2026-08-13",
+      "contribution": "Introduces a cross-dialectal evaluation framework and controllable rule-based transformations spanning many English dialects.",
+      "limitation": "The indexed scope is English dialect robustness; it does not cover the four SynthSEA language settings or multi-agent culturally grounded generation.",
+      "relevance": "Provides a methodological precedent for dialect-specific evaluation, synthetic transformations, and native-speaker partnership.",
+      "verification_status": "candidate",
+      "access_class": "public",
+      "license_or_terms": "ACL Anthology record; verify benchmark and transformation-resource terms."
+    },
+    {
+      "source_id": "web-regicon-2026-search",
+      "source_type": "official_venue",
+      "title": "RegiCON 2026 official CFP and author-guidelines search record",
+      "authors": [],
+      "year": 2026,
+      "venue": "RegiCON 2026",
+      "doi_or_url": "unresolved:web-search-2026-08-13",
+      "retrieved_at": "2026-08-13",
+      "contribution": "Search performed for the official RegiCON 2026 CFP, author guide, template, dates, page limit, and submission rules.",
+      "limitation": "No authoritative official CFP or author-guideline URL was verified in the returned web results.",
+      "relevance": "Venue approval remains blocked until the research team supplies an official source.",
+      "verification_status": "unavailable",
+      "access_class": "public",
+      "license_or_terms": "Not applicable until an official source is identified."
+    }
+  ]
+}

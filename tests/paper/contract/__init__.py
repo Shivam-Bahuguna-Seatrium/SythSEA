@@ -1,0 +1,1 @@
+"""Paper contract tests."""

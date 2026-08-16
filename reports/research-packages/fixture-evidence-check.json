@@ -1,0 +1,43 @@
+{
+  "records": [
+    {
+      "access_class": "public",
+      "artifact_path": "result.json",
+      "artifact_type": "result",
+      "checksum": "0000000000000000000000000000000000000000000000000000000000000000",
+      "command": "synthsea research evidence-check",
+      "condition_id": "fixture",
+      "dataset_versions": [
+        "fixture:v1"
+      ],
+      "environment": {
+        "python": "3.12"
+      },
+      "evidence_id": "fixture-result",
+      "experiment_id": "feature-003-fixture",
+      "inputs": [
+        "fixture-config"
+      ],
+      "language_slice": "singlish",
+      "limitations": [
+        "Not publication evidence"
+      ],
+      "models": [
+        "deterministic-fixture"
+      ],
+      "outputs": [
+        "result.json"
+      ],
+      "prompts": [
+        "fixture-prompt-v1"
+      ],
+      "provenance_refs": [
+        "fixture-config"
+      ],
+      "seeds": [
+        13
+      ],
+      "status": "fixture"
+    }
+  ]
+}

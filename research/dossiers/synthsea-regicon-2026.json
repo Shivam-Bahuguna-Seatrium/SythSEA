@@ -1,0 +1,82 @@
+{
+  "dossier": {
+    "created_at": "2026-08-13T09:11:15.999664Z",
+    "dossier_id": "synthsea-regicon-2026",
+    "novelty_summary": "Novelty remains a research hypothesis until verified literature comparison and the declared experiments are complete.",
+    "research_question_ids": [
+      "rq-001",
+      "rq-002",
+      "rq-003"
+    ],
+    "source_refs": [
+      "web-self-instruct-2023",
+      "web-sea-code-mix-2023",
+      "web-seallms-2024",
+      "web-singlish-ud-2017",
+      "web-nonstandard-english-2020",
+      "web-multi-value-2023",
+      "web-regicon-2026-search"
+    ],
+    "status": "blocked",
+    "target_venue": "RegiCON 2026",
+    "title": "SynthSEA research-to-publication dossier",
+    "unresolved_items": [
+      "official_venue_source_not_verified",
+      "unverified_literature_source"
+    ],
+    "version": "v1"
+  },
+  "research_questions": [
+    {
+      "claim_ids": [
+        "claim-primary-quality"
+      ],
+      "hypotheses": [
+        "The full pipeline will improve at least one predeclared quality measure without unacceptable safety or cultural regressions."
+      ],
+      "language_slices": [
+        "singlish",
+        "malay",
+        "tamil",
+        "singapore_mandarin"
+      ],
+      "question": "Does coordinated language-aware synthetic instruction generation improve quality over declared baselines?",
+      "question_id": "rq-001",
+      "status": "planned"
+    },
+    {
+      "claim_ids": [
+        "claim-ablation"
+      ],
+      "hypotheses": [
+        "Removing language-aware, cultural, or verification components will change predeclared outcomes."
+      ],
+      "language_slices": [
+        "singlish",
+        "malay",
+        "tamil",
+        "singapore_mandarin"
+      ],
+      "question": "Which components of SynthSEA account for observed quality differences?",
+      "question_id": "rq-002",
+      "status": "planned"
+    },
+    {
+      "claim_ids": [
+        "claim-language-slices"
+      ],
+      "hypotheses": [
+        "Performance and failure patterns will differ by language setting and must not be hidden by aggregate scores."
+      ],
+      "language_slices": [
+        "singlish",
+        "malay",
+        "tamil",
+        "singapore_mandarin"
+      ],
+      "question": "How do quality, safety, and cultural judgments vary across the four target settings?",
+      "question_id": "rq-003",
+      "status": "planned"
+    }
+  ]
+}

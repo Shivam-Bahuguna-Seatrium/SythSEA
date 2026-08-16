@@ -1,0 +1,23 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://synthsea.org/schemas/venue-profile.schema.json",
+  "title": "SynthSEA Venue Profile",
+  "type": "object",
+  "required": ["venue_id", "venue_name", "requirements_source", "accessed_at", "format_family", "template_reference", "page_limit", "author_mode", "required_sections", "reference_style", "anonymization_rule", "version", "status"],
+  "properties": {
+    "venue_id": {"type": "string"},
+    "venue_name": {"type": "string"},
+    "requirements_source": {"type": "string", "format": "uri-reference"},
+    "accessed_at": {"type": "string", "format": "date"},
+    "format_family": {"enum": ["springer_lncs", "springer_nature", "venue_specific", "non_springer", "manual_review"]},
+    "template_reference": {"type": "string"},
+    "page_limit": {"type": "integer", "minimum": 1},
+    "author_mode": {"enum": ["anonymous", "camera_ready", "unknown"]},
+    "required_sections": {"type": "array", "minItems": 1, "items": {"type": "string"}},
+    "reference_style": {"type": "string"},
+    "anonymization_rule": {"type": "string"},
+    "version": {"type": "string"},
+    "status": {"enum": ["draft", "reviewed", "approved", "conflicted", "superseded"]}
+  },
+  "additionalProperties": false
+}

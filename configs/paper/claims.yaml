@@ -1,0 +1,7 @@
+required_claim_statuses:
+  - verified
+blocked_claim_statuses:
+  - missing
+  - unsupported
+  - restricted
+  - excluded

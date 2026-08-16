@@ -1,0 +1,7 @@
+{
+  "required_sections": [
+    "title", "abstract", "keywords", "introduction", "related_work",
+    "methodology", "architecture", "dataset_design", "experiments", "results",
+    "discussion", "limitations", "ethics", "reproducibility", "conclusion", "references"
+  ]
+}

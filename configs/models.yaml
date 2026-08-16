@@ -1,0 +1,11 @@
+default_adapter: deterministic_fixture
+models:
+  deterministic_fixture:
+    provider: local
+    model_version: fixture-0.1.0
+  ollama_qwen25_3b:
+    provider: ollama
+    model_version: qwen2.5:3b
+    host: http://127.0.0.1:11434
+    temperature: 0.2
+    platform: macos_apple_silicon

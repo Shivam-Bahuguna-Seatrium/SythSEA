@@ -1,0 +1,20 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://synthsea.local/contracts/research-dossier.schema.json",
+  "title": "SynthSEA Research Dossier",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["dossier_id", "version", "title", "target_venue", "created_at", "source_refs", "research_question_ids", "status"],
+  "properties": {
+    "dossier_id": {"type": "string", "minLength": 1},
+    "version": {"type": "string", "minLength": 1},
+    "title": {"type": "string", "minLength": 1},
+    "target_venue": {"type": "string", "minLength": 1},
+    "created_at": {"type": "string", "format": "date-time"},
+    "source_refs": {"type": "array", "items": {"type": "string"}},
+    "research_question_ids": {"type": "array", "items": {"type": "string"}, "minItems": 1},
+    "novelty_summary": {"type": "string"},
+    "unresolved_items": {"type": "array", "items": {"type": "string"}},
+    "status": {"enum": ["draft", "reviewed", "blocked", "approved"]}
+  }
+}

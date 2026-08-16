@@ -1,0 +1,490 @@
+{
+  "claims": [
+    {
+      "claim_id": "claim-primary-quality",
+      "claim_text": "SynthSEA improves declared quality measures over the declared baseline.",
+      "claim_type": "numerical",
+      "evidence_ids": [],
+      "language_slices": [
+        "singlish",
+        "malay",
+        "tamil",
+        "singapore_mandarin"
+      ],
+      "source_ids": [],
+      "status": "missing"
+    },
+    {
+      "claim_id": "claim-ablation",
+      "claim_text": "Declared SynthSEA components contribute to the observed result.",
+      "claim_type": "methodological",
+      "evidence_ids": [],
+      "language_slices": [
+        "singlish",
+        "malay",
+        "tamil",
+        "singapore_mandarin"
+      ],
+      "source_ids": [],
+      "status": "missing"
+    },
+    {
+      "claim_id": "claim-language-slices",
+      "claim_text": "Results and failure patterns differ across target language settings.",
+      "claim_type": "comparative",
+      "evidence_ids": [],
+      "language_slices": [
+        "singlish",
+        "malay",
+        "tamil",
+        "singapore_mandarin"
+      ],
+      "source_ids": [],
+      "status": "missing"
+    }
+  ],
+  "dossier_id": "synthsea-regicon-2026",
+  "generated_at": "2026-08-13T09:11:15.999664+00:00",
+  "language_slices": [
+    "singlish",
+    "malay",
+    "tamil",
+    "singapore_mandarin"
+  ],
+  "matrix_id": "synthsea-regicon-2026-readiness",
+  "requirements": [
+    {
+      "claim_ids": [
+        "claim-primary-quality"
+      ],
+      "command": "synthsea experiment run --language singlish --condition baseline",
+      "condition_id": "baseline",
+      "dataset_versions": [
+        "singlish:approved-v1"
+      ],
+      "expected_artifacts": [
+        "experiments/results/singlish/baseline.json"
+      ],
+      "human_evaluation": "required for cultural and quality claims",
+      "language_slices": [
+        "singlish"
+      ],
+      "metrics": [
+        "quality_pass_rate",
+        "safety_pass_rate",
+        "cultural_review_pass_rate"
+      ],
+      "question_id": "rq-001",
+      "requirement_id": "req-singlish-baseline",
+      "sample_size": null,
+      "statistical_method": "researcher-approved uncertainty or significance method required",
+      "status": "missing"
+    },
+    {
+      "claim_ids": [
+        "claim-primary-quality"
+      ],
+      "command": "synthsea experiment run --language singlish --condition synthsea_full",
+      "condition_id": "synthsea_full",
+      "dataset_versions": [
+        "singlish:approved-v1"
+      ],
+      "expected_artifacts": [
+        "experiments/results/singlish/synthsea_full.json"
+      ],
+      "human_evaluation": "required for cultural and quality claims",
+      "language_slices": [
+        "singlish"
+      ],
+      "metrics": [
+        "quality_pass_rate",
+        "safety_pass_rate",
+        "cultural_review_pass_rate"
+      ],
+      "question_id": "rq-001",
+      "requirement_id": "req-singlish-synthsea_full",
+      "sample_size": null,
+      "statistical_method": "researcher-approved uncertainty or significance method required",
+      "status": "missing"
+    },
+    {
+      "claim_ids": [
+        "claim-primary-quality"
+      ],
+      "command": "synthsea experiment run --language singlish --condition ablation_language",
+      "condition_id": "ablation_language",
+      "dataset_versions": [
+        "singlish:approved-v1"
+      ],
+      "expected_artifacts": [
+        "experiments/results/singlish/ablation_language.json"
+      ],
+      "human_evaluation": "required for cultural and quality claims",
+      "language_slices": [
+        "singlish"
+      ],
+      "metrics": [
+        "quality_pass_rate",
+        "safety_pass_rate",
+        "cultural_review_pass_rate"
+      ],
+      "question_id": "rq-002",
+      "requirement_id": "req-singlish-ablation_language",
+      "sample_size": null,
+      "statistical_method": "researcher-approved uncertainty or significance method required",
+      "status": "missing"
+    },
+    {
+      "claim_ids": [
+        "claim-primary-quality"
+      ],
+      "command": "synthsea experiment run --language singlish --condition ablation_cultural",
+      "condition_id": "ablation_cultural",
+      "dataset_versions": [
+        "singlish:approved-v1"
+      ],
+      "expected_artifacts": [
+        "experiments/results/singlish/ablation_cultural.json"
+      ],
+      "human_evaluation": "required for cultural and quality claims",
+      "language_slices": [
+        "singlish"
+      ],
+      "metrics": [
+        "quality_pass_rate",
+        "safety_pass_rate",
+        "cultural_review_pass_rate"
+      ],
+      "question_id": "rq-002",
+      "requirement_id": "req-singlish-ablation_cultural",
+      "sample_size": null,
+      "statistical_method": "researcher-approved uncertainty or significance method required",
+      "status": "missing"
+    },
+    {
+      "claim_ids": [
+        "claim-primary-quality"
+      ],
+      "command": "synthsea experiment run --language malay --condition baseline",
+      "condition_id": "baseline",
+      "dataset_versions": [
+        "malay:approved-v1"
+      ],
+      "expected_artifacts": [
+        "experiments/results/malay/baseline.json"
+      ],
+      "human_evaluation": "required for cultural and quality claims",
+      "language_slices": [
+        "malay"
+      ],
+      "metrics": [
+        "quality_pass_rate",
+        "safety_pass_rate",
+        "cultural_review_pass_rate"
+      ],
+      "question_id": "rq-001",
+      "requirement_id": "req-malay-baseline",
+      "sample_size": null,
+      "statistical_method": "researcher-approved uncertainty or significance method required",
+      "status": "missing"
+    },
+    {
+      "claim_ids": [
+        "claim-primary-quality"
+      ],
+      "command": "synthsea experiment run --language malay --condition synthsea_full",
+      "condition_id": "synthsea_full",
+      "dataset_versions": [
+        "malay:approved-v1"
+      ],
+      "expected_artifacts": [
+        "experiments/results/malay/synthsea_full.json"
+      ],
+      "human_evaluation": "required for cultural and quality claims",
+      "language_slices": [
+        "malay"
+      ],
+      "metrics": [
+        "quality_pass_rate",
+        "safety_pass_rate",
+        "cultural_review_pass_rate"
+      ],
+      "question_id": "rq-001",
+      "requirement_id": "req-malay-synthsea_full",
+      "sample_size": null,
+      "statistical_method": "researcher-approved uncertainty or significance method required",
+      "status": "missing"
+    },
+    {
+      "claim_ids": [
+        "claim-primary-quality"
+      ],
+      "command": "synthsea experiment run --language malay --condition ablation_language",
+      "condition_id": "ablation_language",
+      "dataset_versions": [
+        "malay:approved-v1"
+      ],
+      "expected_artifacts": [
+        "experiments/results/malay/ablation_language.json"
+      ],
+      "human_evaluation": "required for cultural and quality claims",
+      "language_slices": [
+        "malay"
+      ],
+      "metrics": [
+        "quality_pass_rate",
+        "safety_pass_rate",
+        "cultural_review_pass_rate"
+      ],
+      "question_id": "rq-002",
+      "requirement_id": "req-malay-ablation_language",
+      "sample_size": null,
+      "statistical_method": "researcher-approved uncertainty or significance method required",
+      "status": "missing"
+    },
+    {
+      "claim_ids": [
+        "claim-primary-quality"
+      ],
+      "command": "synthsea experiment run --language malay --condition ablation_cultural",
+      "condition_id": "ablation_cultural",
+      "dataset_versions": [
+        "malay:approved-v1"
+      ],
+      "expected_artifacts": [
+        "experiments/results/malay/ablation_cultural.json"
+      ],
+      "human_evaluation": "required for cultural and quality claims",
+      "language_slices": [
+        "malay"
+      ],
+      "metrics": [
+        "quality_pass_rate",
+        "safety_pass_rate",
+        "cultural_review_pass_rate"
+      ],
+      "question_id": "rq-002",
+      "requirement_id": "req-malay-ablation_cultural",
+      "sample_size": null,
+      "statistical_method": "researcher-approved uncertainty or significance method required",
+      "status": "missing"
+    },
+    {
+      "claim_ids": [
+        "claim-primary-quality"
+      ],
+      "command": "synthsea experiment run --language tamil --condition baseline",
+      "condition_id": "baseline",
+      "dataset_versions": [
+        "tamil:approved-v1"
+      ],
+      "expected_artifacts": [
+        "experiments/results/tamil/baseline.json"
+      ],
+      "human_evaluation": "required for cultural and quality claims",
+      "language_slices": [
+        "tamil"
+      ],
+      "metrics": [
+        "quality_pass_rate",
+        "safety_pass_rate",
+        "cultural_review_pass_rate"
+      ],
+      "question_id": "rq-001",
+      "requirement_id": "req-tamil-baseline",
+      "sample_size": null,
+      "statistical_method": "researcher-approved uncertainty or significance method required",
+      "status": "missing"
+    },
+    {
+      "claim_ids": [
+        "claim-primary-quality"
+      ],
+      "command": "synthsea experiment run --language tamil --condition synthsea_full",
+      "condition_id": "synthsea_full",
+      "dataset_versions": [
+        "tamil:approved-v1"
+      ],
+      "expected_artifacts": [
+        "experiments/results/tamil/synthsea_full.json"
+      ],
+      "human_evaluation": "required for cultural and quality claims",
+      "language_slices": [
+        "tamil"
+      ],
+      "metrics": [
+        "quality_pass_rate",
+        "safety_pass_rate",
+        "cultural_review_pass_rate"
+      ],
+      "question_id": "rq-001",
+      "requirement_id": "req-tamil-synthsea_full",
+      "sample_size": null,
+      "statistical_method": "researcher-approved uncertainty or significance method required",
+      "status": "missing"
+    },
+    {
+      "claim_ids": [
+        "claim-primary-quality"
+      ],
+      "command": "synthsea experiment run --language tamil --condition ablation_language",
+      "condition_id": "ablation_language",
+      "dataset_versions": [
+        "tamil:approved-v1"
+      ],
+      "expected_artifacts": [
+        "experiments/results/tamil/ablation_language.json"
+      ],
+      "human_evaluation": "required for cultural and quality claims",
+      "language_slices": [
+        "tamil"
+      ],
+      "metrics": [
+        "quality_pass_rate",
+        "safety_pass_rate",
+        "cultural_review_pass_rate"
+      ],
+      "question_id": "rq-002",
+      "requirement_id": "req-tamil-ablation_language",
+      "sample_size": null,
+      "statistical_method": "researcher-approved uncertainty or significance method required",
+      "status": "missing"
+    },
+    {
+      "claim_ids": [
+        "claim-primary-quality"
+      ],
+      "command": "synthsea experiment run --language tamil --condition ablation_cultural",
+      "condition_id": "ablation_cultural",
+      "dataset_versions": [
+        "tamil:approved-v1"
+      ],
+      "expected_artifacts": [
+        "experiments/results/tamil/ablation_cultural.json"
+      ],
+      "human_evaluation": "required for cultural and quality claims",
+      "language_slices": [
+        "tamil"
+      ],
+      "metrics": [
+        "quality_pass_rate",
+        "safety_pass_rate",
+        "cultural_review_pass_rate"
+      ],
+      "question_id": "rq-002",
+      "requirement_id": "req-tamil-ablation_cultural",
+      "sample_size": null,
+      "statistical_method": "researcher-approved uncertainty or significance method required",
+      "status": "missing"
+    },
+    {
+      "claim_ids": [
+        "claim-primary-quality"
+      ],
+      "command": "synthsea experiment run --language singapore_mandarin --condition baseline",
+      "condition_id": "baseline",
+      "dataset_versions": [
+        "singapore_mandarin:approved-v1"
+      ],
+      "expected_artifacts": [
+        "experiments/results/singapore_mandarin/baseline.json"
+      ],
+      "human_evaluation": "required for cultural and quality claims",
+      "language_slices": [
+        "singapore_mandarin"
+      ],
+      "metrics": [
+        "quality_pass_rate",
+        "safety_pass_rate",
+        "cultural_review_pass_rate"
+      ],
+      "question_id": "rq-001",
+      "requirement_id": "req-singapore_mandarin-baseline",
+      "sample_size": null,
+      "statistical_method": "researcher-approved uncertainty or significance method required",
+      "status": "missing"
+    },
+    {
+      "claim_ids": [
+        "claim-primary-quality"
+      ],
+      "command": "synthsea experiment run --language singapore_mandarin --condition synthsea_full",
+      "condition_id": "synthsea_full",
+      "dataset_versions": [
+        "singapore_mandarin:approved-v1"
+      ],
+      "expected_artifacts": [
+        "experiments/results/singapore_mandarin/synthsea_full.json"
+      ],
+      "human_evaluation": "required for cultural and quality claims",
+      "language_slices": [
+        "singapore_mandarin"
+      ],
+      "metrics": [
+        "quality_pass_rate",
+        "safety_pass_rate",
+        "cultural_review_pass_rate"
+      ],
+      "question_id": "rq-001",
+      "requirement_id": "req-singapore_mandarin-synthsea_full",
+      "sample_size": null,
+      "statistical_method": "researcher-approved uncertainty or significance method required",
+      "status": "missing"
+    },
+    {
+      "claim_ids": [
+        "claim-primary-quality"
+      ],
+      "command": "synthsea experiment run --language singapore_mandarin --condition ablation_language",
+      "condition_id": "ablation_language",
+      "dataset_versions": [
+        "singapore_mandarin:approved-v1"
+      ],
+      "expected_artifacts": [
+        "experiments/results/singapore_mandarin/ablation_language.json"
+      ],
+      "human_evaluation": "required for cultural and quality claims",
+      "language_slices": [
+        "singapore_mandarin"
+      ],
+      "metrics": [
+        "quality_pass_rate",
+        "safety_pass_rate",
+        "cultural_review_pass_rate"
+      ],
+      "question_id": "rq-002",
+      "requirement_id": "req-singapore_mandarin-ablation_language",
+      "sample_size": null,
+      "statistical_method": "researcher-approved uncertainty or significance method required",
+      "status": "missing"
+    },
+    {
+      "claim_ids": [
+        "claim-primary-quality"
+      ],
+      "command": "synthsea experiment run --language singapore_mandarin --condition ablation_cultural",
+      "condition_id": "ablation_cultural",
+      "dataset_versions": [
+        "singapore_mandarin:approved-v1"
+      ],
+      "expected_artifacts": [
+        "experiments/results/singapore_mandarin/ablation_cultural.json"
+      ],
+      "human_evaluation": "required for cultural and quality claims",
+      "language_slices": [
+        "singapore_mandarin"
+      ],
+      "metrics": [
+        "quality_pass_rate",
+        "safety_pass_rate",
+        "cultural_review_pass_rate"
+      ],
+      "question_id": "rq-002",
+      "requirement_id": "req-singapore_mandarin-ablation_cultural",
+      "sample_size": null,
+      "statistical_method": "researcher-approved uncertainty or significance method required",
+      "status": "missing"
+    }
+  ],
+  "version": "v1"
+}

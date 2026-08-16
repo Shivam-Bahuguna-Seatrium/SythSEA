@@ -1,0 +1,14 @@
+{
+  "manifest_id": "fixture-evidence",
+  "manifest_version": "v1",
+  "source_root": "fixture://experiments",
+  "artifact_refs": ["artifact-1"],
+  "experiment_ids": ["run-1"],
+  "language_profiles": ["singlish", "malay", "tamil", "singapore_mandarin"],
+  "conditions": ["tier_b", "tier_c"],
+  "checksums": {"artifact-1": "fixture-checksum"},
+  "access_summary": {"public": 1, "restricted": 0, "private": 0},
+  "limitations": ["fixture evidence only"],
+  "created_at": "2026-08-13T00:00:00Z",
+  "verification_status": "verified"
+}

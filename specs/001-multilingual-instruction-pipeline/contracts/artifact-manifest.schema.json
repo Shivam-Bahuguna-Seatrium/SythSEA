@@ -1,0 +1,32 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://synthsea.org/schemas/artifact-manifest.schema.json",
+  "title": "SynthSEA Artifact Manifest",
+  "type": "object",
+  "required": ["manifest_version", "package_id", "access_class", "artifacts", "created_at"],
+  "properties": {
+    "manifest_version": {"type": "string"},
+    "package_id": {"type": "string", "minLength": 1},
+    "access_class": {"enum": ["public", "restricted", "private"]},
+    "created_at": {"type": "string", "format": "date-time"},
+    "artifacts": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["artifact_id", "path", "kind", "checksum", "access_class"],
+        "properties": {
+          "artifact_id": {"type": "string"},
+          "path": {"type": "string"},
+          "kind": {"type": "string"},
+          "checksum": {"type": "string"},
+          "access_class": {"enum": ["public", "restricted", "private"]},
+          "source_refs": {"type": "array", "items": {"type": "string"}},
+          "license": {"type": "string"}
+        },
+        "additionalProperties": false
+      }
+    },
+    "excluded_artifacts": {"type": "array", "items": {"type": "string"}}
+  },
+  "additionalProperties": false
+}

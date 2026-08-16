@@ -1,0 +1,41 @@
+profiles:
+  - profile_id: singapore_english_singlish
+    display_name: Singapore English / Singlish
+    language_or_variety: Singapore English and Singlish
+    region: Singapore
+    script_or_orthography: Latin
+    inclusion_rules: []
+    cultural_context: Singapore context required
+    code_switching_notes: English-mixing conditions are explicit
+    resource_limitations: resource status must be evidenced
+    validation_status: pending_review
+  - profile_id: malay
+    display_name: Singapore Malay / Malay
+    language_or_variety: Malay
+    region: Singapore
+    script_or_orthography: Latin
+    inclusion_rules: []
+    cultural_context: Singapore context required
+    code_switching_notes: English-mixing conditions are explicit
+    resource_limitations: resource status must be evidenced
+    validation_status: pending_review
+  - profile_id: tamil
+    display_name: Singapore Tamil / Tamil
+    language_or_variety: Tamil
+    region: Singapore
+    script_or_orthography: Tamil
+    inclusion_rules: []
+    cultural_context: Singapore context required
+    code_switching_notes: English-mixing conditions are explicit
+    resource_limitations: resource status must be evidenced
+    validation_status: pending_review
+  - profile_id: singapore_mandarin
+    display_name: Singapore-context Mandarin
+    language_or_variety: Singapore-context Mandarin
+    region: Singapore
+    script_or_orthography: Simplified Chinese
+    inclusion_rules: []
+    cultural_context: Singapore context required
+    code_switching_notes: English-mixing conditions are explicit
+    resource_limitations: resource status must be evidenced
+    validation_status: pending_review

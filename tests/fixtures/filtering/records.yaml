@@ -1,0 +1,6 @@
+records:
+  - record_id: valid-1
+    quality_status: eligible
+  - record_id: malformed-1
+    quality_status: rejected
+    reason: missing_response
