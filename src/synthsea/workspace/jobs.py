@@ -31,7 +31,11 @@ class WorkspaceJobStore:
             status = TrainingJobStatus.QUEUED
             reason = ""
         job_id = f"mlx-{uuid4().hex[:12]}"
-        command = _mlx_command(request, self.jobs_root / job_id / "adapter")
+        command = _mlx_command(
+            request,
+            self.jobs_root / job_id / "adapter",
+            self._dataset_path(request.dataset_version),
+        )
         job = WorkspaceJob(
             job_id=job_id,
             status=status,
@@ -80,6 +84,17 @@ class WorkspaceJobStore:
         self.save(cancelled)
         return cancelled
 
+    def _dataset_path(self, dataset_version: str) -> Path | str:
+        if not dataset_version.startswith("generated:generation-"):
+            return dataset_version
+        parts = dataset_version.split(":")
+        if len(parts) != 3:
+            return dataset_version
+        data_root = self.root / "generation" / f"{parts[1]}-data"
+        if not (data_root / "train.jsonl").is_file():
+            raise ValueError(f"generated dataset version is missing: {dataset_version}")
+        return data_root
+
 
 def job_response(job: WorkspaceJob) -> FineTuningJobResponse:
     return FineTuningJobResponse(
@@ -96,8 +111,10 @@ def job_response(job: WorkspaceJob) -> FineTuningJobResponse:
     )
 
 
-def _mlx_command(request: FineTuningJobRequest, adapter_path: Path) -> str:
+def _mlx_command(
+    request: FineTuningJobRequest, adapter_path: Path, dataset_path: Path | str
+) -> str:
     return (
-        f"mlx_lm.lora --model {request.base_model} --train --data {request.dataset_version} "
+        f"mlx_lm.lora --model {request.base_model} --train --data {dataset_path} "
         f"--seed {request.seed} --adapter-path {adapter_path}"
     )

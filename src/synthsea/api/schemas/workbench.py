@@ -45,12 +45,18 @@ class GenerationRunRequest(StrictModel):
 
 class GenerationRunResponse(StrictModel):
     run_id: str
+    dataset_version: str
     model_version: str
     topic: str
     language_profile_id: str
     record_count: int
+    requested_count: int
+    status: str
+    evaluation_status: str
     failures: list[str] = Field(default_factory=list)
     stages: list[str]
+    records: list[dict[str, object]] = Field(default_factory=list)
+    dataset_path: str
     artifact_ref: str
 
 
