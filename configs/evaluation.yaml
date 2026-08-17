@@ -1,3 +1,24 @@
-metrics: [quality_pass_rate, duplicate_rate]
-human_review: false
+research_questions:
+	- Does curated multi-agent synthetic instruction data improve held-out task performance over unfiltered and seed-only baselines?
+	- Do quality gates improve data efficiency across each target language slice?
+candidate_audit_metrics:
+	- schema_validity_rate
+	- exact_duplicate_rate
+	- near_duplicate_rate
+	- language_slice_coverage
+	- response_length_distribution
+	- contamination_candidate_rate
+human_review:
+	required: true
+	sample_policy: stratified_by_language_and_task_family
+	minimum_records_per_slice: 30
+	reviewer_roles: [language_specialist, domain_reviewer]
+benchmark_protocol:
+	required_before_claims: true
+	held_out_test: external_or_frozen_before_generation
+	report_by_language: true
+	baselines: [base_model, seed_only_sft, unfiltered_synthetic_sft]
+	ablations: [without_critic_judge, without_diversity_policy, without_language_specialist]
+	seeds: [13, 29, 47]
+	statistics: bootstrap_confidence_intervals
 data_efficiency_sizes: [1000, 5000, 10000, 25000, 50000]

@@ -43,8 +43,10 @@ class GenerationWorkspaceService:
             run_id=run_id, dataset_version=f"generated:{run_id}:v1", model_version=model_version,
             topic=topic, language_profile_id=language_profile_id, record_count=0,
             requested_count=prompt_count, status="queued", evaluation_status="not_started",
-            failures=[], stages=[stage.name for stage in _methodology_stages()], records=[],
+            benchmark_status="not_started", failures=[],
+            stages=[stage.name for stage in _methodology_stages()], records=[],
             dataset_path=str(self.root / f"{run_id}-data"),
+            quality_report={},
             artifact_ref=f"generation:{self.root / f'{run_id}.json'}",
         )
         self._save(result, [])
@@ -65,10 +67,11 @@ class GenerationWorkspaceService:
         result = result.model_copy(update={"status": "running"})
         self._save(result, [])
         prompts = [
-            f"Create one culturally appropriate instruction-response example about {topic} "
-            f"for {language_profile_id}. "
-            "Preserve factual uncertainty, avoid personal data, and do not claim research results."
-            for _ in range(prompt_count)
+            f"Create one {task_family} instruction-response example about {topic} "
+            f"for {language_profile_id}. Preserve factual uncertainty, avoid personal data, "
+            "and do not claim research results."
+            for index in range(prompt_count)
+            for task_family in [_TASK_FAMILIES[index % len(_TASK_FAMILIES)]]
         ]
         records: list[dict[str, object]] = []
         failures: list[str] = []
@@ -136,7 +139,11 @@ class GenerationWorkspaceService:
         if result.status != "completed":
             raise ValueError("generation batch must complete before agent evaluation")
         result = result.model_copy(
-            update={"evaluation_status": "agent_reviewed_pending_experiment_evaluation"}
+            update={
+                "evaluation_status": "automatic_data_audit_complete",
+                "benchmark_status": "blocked_pending_downstream_experiments",
+                "quality_report": _quality_report(value.get("records", []), result.failures),
+            }
         )
         stage_results = value.get("stage_results", [])
         self._save(result, value.get("records", []), stage_results)
@@ -164,6 +171,13 @@ class GenerationWorkspaceService:
                 + "\n"
                 for record in records
             )
+        )
+        (data_root / "README.md").write_text(
+            "# Generated batch\n\n"
+            f"Version: `{result.dataset_version}`\n\n"
+            "This file contains candidate training data only. It is not a held-out test set "
+            "and cannot support a research claim until downstream benchmark experiments "
+            "are recorded.\n"
         )
         (self.root / f"{result.run_id}.json").write_text(
             json.dumps(
@@ -202,6 +216,8 @@ class GenerationRun(StrictModel):
     records: list[dict[str, object]]
     dataset_path: str
     artifact_ref: str
+    benchmark_status: str = "not_started"
+    quality_report: dict[str, object] = {}
 
 
 def _methodology_stages() -> list:
@@ -211,3 +227,44 @@ def _methodology_stages() -> list:
         CulturalValidationStage(), SemanticValidationStage(), DiversityDifficultyStage(),
         CriticStage(), JudgeStage(), RefinementStage(),
     ]
+
+
+_TASK_FAMILIES = (
+    "workplace pragmatics",
+    "cultural explanation",
+    "code-switching",
+    "safety-aware clarification",
+)
+
+
+def _quality_report(records: list[dict[str, object]], failures: list[str]) -> dict[str, object]:
+    normalized: set[tuple[str, str]] = set()
+    duplicate_count = 0
+    incomplete_count = 0
+    response_lengths: list[int] = []
+    for record in records:
+        instruction = str(record.get("instruction", "")).strip()
+        response = str(record.get("response", "")).strip()
+        if not instruction or not response:
+            incomplete_count += 1
+            continue
+        fingerprint = (" ".join(instruction.lower().split()), " ".join(response.lower().split()))
+        if fingerprint in normalized:
+            duplicate_count += 1
+        normalized.add(fingerprint)
+        response_lengths.append(len(response.split()))
+    total = len(records)
+    return {
+        "total_candidates": total,
+        "generation_failures": len(failures),
+        "incomplete_records": incomplete_count,
+        "exact_duplicate_records": duplicate_count,
+        "unique_pair_rate": (total - duplicate_count) / total if total else 0.0,
+        "mean_response_tokens": sum(response_lengths) / len(response_lengths)
+        if response_lengths
+        else 0.0,
+        "automated_audit": (
+            "pass" if total and not incomplete_count and not duplicate_count else "review"
+        ),
+        "downstream_benchmark": "required",
+    }

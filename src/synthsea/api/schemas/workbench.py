@@ -58,6 +58,8 @@ class GenerationRunResponse(StrictModel):
     records: list[dict[str, object]] = Field(default_factory=list)
     dataset_path: str
     artifact_ref: str
+    benchmark_status: str = "not_started"
+    quality_report: dict[str, object] = Field(default_factory=dict)
 
 
 class FineTuningJobResponse(StrictModel):

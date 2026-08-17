@@ -22,6 +22,15 @@ class WorkspaceJobStore:
             status = TrainingJobStatus.BLOCKED
             reason = "restricted dataset requires an approved local training policy"
         elif (
+            request.dataset_version.startswith("generated:generation-")
+            and not self._generated_dataset_is_audited(request.dataset_version)
+        ):
+            status = TrainingJobStatus.BLOCKED
+            reason = (
+                "generated dataset requires a completed automatic data audit before "
+                "fine-tuning"
+            )
+        elif (
             not request.base_model.startswith("mlx")
             and "mlx-community/" not in request.base_model
         ):
@@ -94,6 +103,19 @@ class WorkspaceJobStore:
         if not (data_root / "train.jsonl").is_file():
             raise ValueError(f"generated dataset version is missing: {dataset_version}")
         return data_root
+
+    def _generated_dataset_is_audited(self, dataset_version: str) -> bool:
+        parts = dataset_version.split(":")
+        if len(parts) != 3:
+            return False
+        manifest = self.root / "generation" / f"{parts[1]}.json"
+        if not manifest.is_file():
+            return False
+        try:
+            run = json.loads(manifest.read_text())["run"]
+        except (json.JSONDecodeError, KeyError):
+            return False
+        return run.get("evaluation_status") == "automatic_data_audit_complete"
 
 
 def job_response(job: WorkspaceJob) -> FineTuningJobResponse:
